@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ajax get实例</title>
+</head>
+<body>
+	<button id="buts">get 方式</button>
+	<div>
+		<img src="">
+	</div>
+	<script type="text/javascript">
+		var buts = document.getElementById('buts');
+		var dvs = document.getElementById('dvs');
+		var imgs = document.getElementById('imgs');
+		var i=1;
+		buts.onclick = function(){
+			//发送ajax
+			//1、创建ajax 对象
+			var x = new XMLHttpRequest();
+			//2
+			x.onreadystatechange = function(){
+				if(x.readyState==4 && x.status ==200){
+					dvs.innerHTML = '';
+					eval('var arr ='+x.responseText);
+					//创建img
+					var img = document.createElement('img');
+					img.setAttribute('src',arr);
+					dvs.appendChild(img);
+				}
+			}
+			x.open('GET','/admin/getajax/'+i,true);
+
+			x.send();
+			i++;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<button id="buts">ajax使用</button>
+	<script type="text/javascript">
+		var buts = document.getElementById('buts');
+		buts.onclick = function(){
+			var x = new XMLHttpRequest();
+			x.onreadystatechange = fucntion(){
+				if(x.readyState==4 &&x.status==200){
+					console.log(x.responseText);
+					//把json 字符串转化成js可以识别的对象类型数据
+					eval('var arr='+x.responseText);
+					console.log(arr);
+				}
+			}
+			x.open('GET','/admin/ajax/10',true);
+			x.send();
+		}
+	</script>
+
+</body>
+</html>

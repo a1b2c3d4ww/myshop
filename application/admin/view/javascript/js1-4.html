@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<button id="buts">async同步异步</button>
+	<div id=""></div>
+	<script type="text/javascript">
+		var buts = document.getElementById('buts');
+
+		var dvs = document.getElementById('dvs');
+		var imgs = document.getElementById('imgs');
+
+		var num =10;
+		buts.onclick = function(){
+			var x = new XMLHttpRequest();
+
+			x.onreadystatechange = fucntion(){
+				if(x.readyState==4 && x.status==200){
+					num =100+parseInt(x.responseText);
+				}
+			}
+			//true 异步 false同步
+			x.open('GET','/admin/async',true);
+			x.send();
+			alert(num);
+		}
+	</script>
+
+</body>
+</html>

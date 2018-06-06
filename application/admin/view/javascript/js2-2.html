@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<button id="buts">get方式</button>
+	<div>
+		<img src="">
+	</div>
+	<script type="text/javascript">
+		var buts = document.getElementById('buts');
+		var dvs = document.getElementById('dvs');
+		var imgs = document.getElementById('imgs');
+		var i=1;
+		buts.onclick = function(){
+			var x = new XMLHttpRequest();
+
+			x.onreadystatechange = fucntion(){
+				if(x.readystate==4 && x.status==200){
+					dvs.innerHTML = '';
+					eval('var arr='+x.responseText);
+					var img = document.createElement('img');
+					img.setAttribute('src',arr);
+					dvs.appendChild(img);
+				}
+			}
+			x.open('GET','/admin/getajax/'+i,true);
+			x.send();
+			i++;
+		}
+	</script>
+</body>
+</html>
